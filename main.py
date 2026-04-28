@@ -2,14 +2,14 @@
 # 작 성 자 : 옥민경
 
 #[2차 과제] 갓생 살기: 투두 메이트 시스템
-#1. 변수 및 리스트 초기화 (필수 요건: 5개 이상 변수, 리스트 사용)
+#1. 변수 및 리스트 초기화
 user_name = input("사용자 이름을 입력하세요: ")
 total_goal_count = 0
 done_count = 0
 focus_time = 0.0
 todo_data = []
 
-#2. 반복문(for)을 이용한 데이터 입력 (필수 요건: 3개 이상 데이터 append)
+#2. 반복문(for)을 이용한 데이터 입력
 print(f'{user name}님의 오늘의 기록을 시작합니다')
 categories = ['학업', '운동','취미']
 
@@ -17,7 +17,7 @@ for category in  categories:
   val = int(input(f'[{category]] 완료한 할 일 개수를 입력하세요:'))
   todo_data.append(val)
 
-# 데이터 조작 (필수 요건: 메소드 및 내장함수 4종 이상)
+# 데이터 조작 
 total_count = sum(todo_data)
 task_count = len(todo_data)
 best_recored = max(todo_data)
