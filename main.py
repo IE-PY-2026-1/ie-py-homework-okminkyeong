@@ -48,7 +48,7 @@ elif final_score >= 50:
 else:
     grade = 'F (재충전 필요)'
 
-#6
+#6. 출력
 print(f'최종 성취 점수: {final_score:.2f}점')
 print(f'당신의 오늘 등급은 [{grade}] 입니다.')
       
