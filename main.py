@@ -19,9 +19,9 @@ for category in  categories:
 
 # 데이터 조작 (필수 요건: 메소드 및 내장함수 4종 이상)
 total_count = sum(todo_data)
-task_count = lin(todo_data)
+task_count = len(todo_data)
 best_recored = max(todo_data)
-todo_data.sort(reserve=True)
+todo_data.sort(reverse=True)
 
 #연산자 활용 및 성취도 계산
 #가중치 예시: (완료 개수 * 10) + (집중 시간 * 2)
