@@ -10,7 +10,7 @@ focus_time = 0.0
 todo_data = []
 
 #2. 반복문(for)을 이용한 데이터 입력
-print(f'{user name}님의 오늘의 기록을 시작합니다')
+print(f'{user_name}님의 오늘의 기록을 시작합니다')
 categories = ['학업', '운동','취미']
 
 for category in  categories:
@@ -18,7 +18,7 @@ for category in  categories:
   todo_data.append(val)
 
 # 데이터 조작 
-total_count = sum(todo_data)
+total_done = sum(todo_data)
 task_count = len(todo_data)
 best_recored = max(todo_data)
 todo_data.sort(reverse=True)
@@ -34,12 +34,12 @@ bonus_score += 5
 
 final_score = achievement_score + bonus_score
 
-5. 제어구조
-print(f'{useer_name}님의 최종 분석 결과)
+#5. 제어구조
+print(f'{user_name}님의 최종 분석 결과)
 
 if final_score >= 90:
     grade = 'S (갓생 마스터)'
-    if total_done >= 5 and focus time >= 3.0:
+    if total_done >= 5 and focus_time >= 3.0:
       print('[특별칭호: 전설의 몰입러] 부여')
 elif final_score >= 70:
       grade = 'A(성실한 노력파)'
