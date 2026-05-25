@@ -14,7 +14,7 @@ print(f'{user_name}님의 오늘의 기록을 시작합니다')
 categories = ['학업', '운동','취미']
 
 for category in  categories:
-  val = int(input(f'[{category]] 완료한 할 일 개수를 입력하세요:'))
+  val = int(input(f'[{category}] 완료한 할 일 개수를 입력하세요:'))
   todo_data.append(val)
 
 # 데이터 조작 
@@ -35,7 +35,7 @@ bonus_score += 5
 final_score = achievement_score + bonus_score
 
 #5. 제어구조
-print(f'{user_name}님의 최종 분석 결과)
+print(f'{user_name}님의 최종 분석 결과')
 
 if final_score >= 90:
     grade = 'S (갓생 마스터)'
