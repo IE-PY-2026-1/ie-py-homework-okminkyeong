@@ -1,55 +1,102 @@
-# 파일이름 : 60251781 옥민경 파이썬 2차과제
+# 파일이름 : 60251781 옥민경 파이썬 3차과제
 # 작 성 자 : 옥민경
 
-#[2차 과제] 갓생 살기: 투두 메이트 시스템
-#1. 변수 및 리스트 초기화
-user_name = input("사용자 이름을 입력하세요: ")
-total_goal_count = 0
-done_count = 0
-focus_time = 0.0
-todo_data = []
+#[3차 과제] 갓생 살기: 투두 메이트 시스템
+#전역 변수 선언(프로그램 전체에서 관리할 투두리스트 데이터)
+todo_list = []
+completed_count = 0  #완료된 할 일 개수를 추적하는 전역 변수
 
-#2. 반복문(for)을 이용한 데이터 입력
-print(f'{user_name}님의 오늘의 기록을 시작합니다')
-categories = ['학업', '운동','취미']
+def input_todo():
+    """1. 할 일을 입력받아 전역 리스트 추가하는 함수"""
+    print("\n--- [새로운 할 일 추가] ---")
+    task = input('추가할 할 일을 입력하세요: ')
 
-for category in  categories:
-  val = int(input(f'[{category}] 완료한 할 일 개수를 입력하세요:'))
-  todo_data.append(val)
+    if task == "":
+        print("경고: 내용을 입력해야 합니다.")
+    else:
+        todo_list.append({"task": task, "done": False})
+        print(f"성공: '{task}' 항목이 추가되었습니다.")
 
-# 데이터 조작 
-total_done = sum(todo_data)
-task_count = len(todo_data)
-best_recored = max(todo_data)
-todo_data.sort(reverse=True)
+def show_todos(todos):
+    """2. 현재 투두 리스트를 출력하는 함수(매개변수 전달 조건 충족)"""
+    print("\n--- [현재 투두 리스트 보기] ---")
+    if not todos:
+        print("아직 등롣된 할 일이 없습니다.")
+        return
+    
+    for i in range(len(todos)):
+        item = todos[i]
 
-#연산자 활용 및 성취도 계산
-#가중치 예시: (완료 개수 * 10) + (집중 시간 * 2)
-focus_time = float(input('오늘의 총 집중 시가(시간 단위)을 입력하세요: '))
-achievement_score = (total_done * 15.5) + (focus_time * 5.0)
+        if item["done"] == True:
+            status = "[완료]"
+        else:
+            status = "[미완료]"
 
-#복합 대입 연산자 활용
-bonus_score = 0
-bonus_score += 5
+        print(f"{i + 1}. {status} {item['task']}") 
 
-final_score = achievement_score + bonus_score
+def complete_todo():
+    """3. 할 일을 완료 처리하고 완료 카운트를 올리는 함수"""
+    global completed_count
 
-#5. 제어구조
-print(f'{user_name}님의 최종 분석 결과')
+    print("\n--- [할 일 완료하기] ---")
+    if not todo_list:
+        print("완료 처리할 항목이 없습니다.")
+        return 0
 
-if final_score >= 90:
-    grade = 'S (갓생 마스터)'
-    if total_done >= 5 and focus_time >= 3.0:
-      print('[특별칭호: 전설의 몰입러] 부여')
-elif final_score >= 70:
-      grade = 'A(성실한 노력파)'
-elif final_score >= 50:
-      grade = 'B(평범한 하루)'
-else:
-    grade = 'F (재충전 필요)'
+    for i in range(len(todo_list)):
+        item = todo_list[i]
+        if item["done"] == True:
+            status = "[완료]"
+        else:
+            status = "[미완료]"
+        print(f"{i + 1}. {status} {item['task']}")
 
-#6. 출력
-print(f'최종 성취 점수: {final_score:.2f}점')
-print(f'당신의 오늘 등급은 [{grade}] 입니다.')
-      
+    choice_input = input("완료할 항목의 번호를 선택하세요: ")
 
+    target_index = -1
+    for i in range(len(todo_list)):
+        if choice_input == str(i + 1):
+            target_index = i
+
+    if target_index != -1:
+        selected_item = todo_list[target_index]
+        if selected_item["done"] == False:
+            selected_item["done"] = True
+            completed_count += 1
+            print(f"성공: '{selected_item['task']}' 항목을 완료했습니다.")
+            return 1
+        else:
+            print("경고: 이미 완료된 항목입니다.")
+            return 0
+    else:
+        print("경고: 올바른 변호를 선택해주세요.")
+        return 0
+    
+
+while True:
+    print("\n===============================")
+    print(f" Todo Mate (오늘 완료: {completed_count}개) ")
+    print("===============================")
+    print("1. 할 일 입력")
+    print("2. 투두 조회")
+    print("3. 할 일 완료")
+    print("4. 프로그램 종료")
+    print("===============================")
+
+    menu = input("원하는 메뉴 번호를 입력하세요: ")
+
+    if menu == "1":
+        input_todo()
+
+    elif menu == "2":
+        show_todos(todo_list)
+
+    elif menu == "3":
+        result= complete_todo()
+
+    elif menu == "4":
+        print("\n프로그램을 종료합니다.")
+        break
+    
+    else:
+        print("경고: 잘못된 입력입니다. 1번부터 4번 사이의 숫자를 입력해주세요.")
