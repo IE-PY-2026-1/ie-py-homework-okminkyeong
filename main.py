@@ -17,7 +17,7 @@ def input_todo():
 
     if task == "":
         print("경고: 내용을 입력해야 합니다.")
-        returb
+        return
     
     try:
         priority = int(input("우선순위를 입려하세요 (1~5 숫자): "))
